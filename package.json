@@ -10,7 +10,7 @@
   "scripts": {
     "dev": "nodemon index.js --ignore client"
   },
-  "author": "",
+  "author": "Fernando Brandao",
   "license": "ISC",
   "dependencies": {
     "apollo-client": "^0.8.2",
