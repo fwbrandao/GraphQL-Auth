@@ -2,13 +2,22 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { Router, hashHistory, Route, IndexRoute } from 'react-router';
 
-import ApolloClient from 'apollo-client';
+import ApolloClient, { createNetworkInterface } from 'apollo-client';
 import { ApolloProvider } from 'react-apollo';
 
 import App from './components/App';
 
+const networkInterface = new createNetworkInterface({
+    uri: '/graphql',
+    opts: {
+        credentials: 'same-origin'
+    }
+});
+
+// Apollo  call to the server
 // allows apollo to track and fetch all objects with an id.
 const client = new ApolloClient({
+    networkInterface,
     dataIdFromObject : o => o.id
 });
 
