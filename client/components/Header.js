@@ -8,7 +8,9 @@ import query from '../queries/CurrentUser';
 class Header extends Component {
 
     onLogoutClick() {
-        this.props.mutate({});
+        this.props.mutate({
+            refetchQuery: [{ query }]
+        });
     }
 
     renderButton() {

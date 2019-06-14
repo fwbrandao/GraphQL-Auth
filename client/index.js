@@ -6,6 +6,7 @@ import ApolloClient, { createNetworkInterface } from 'apollo-client';
 import { ApolloProvider } from 'react-apollo';
 
 import App from './components/App';
+import LoginForm from './components/LoginForm';
 
 const networkInterface = new createNetworkInterface({
     uri: '/graphql',
@@ -26,6 +27,7 @@ const Root = () => {
         <ApolloProvider client={client}>
             <Router history={hashHistory}>
                 <Route path="/" component={App}>
+                    <Route path="login" component={LoginForm} />
                 </Route>
             </Router>
         </ApolloProvider>

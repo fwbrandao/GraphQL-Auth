@@ -3,7 +3,7 @@ import Header from './Header';
 
 const App = (props) => {
     return (
-        <did>
+        <did className="container">
             <Header />
             {props.children}
         </did>
