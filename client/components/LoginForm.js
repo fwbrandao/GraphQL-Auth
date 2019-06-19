@@ -15,15 +15,15 @@ class LoginForm extends Component {
     }
 
     //WARNING! To be deprecated in React v17. Use componentDidUpdate instead.
-    componentWillUpdate(nextProps) {
+    componentDidUpdate(prevProps) {
         // this.props // the old, current set of props
         // nextProps // the next set of props that will be in place
         // when the component rerenders
-        if (!this.props.data.user && nextProps.data.user) {
+        if (!prevProps.data.user && this.props.data.user) {
             // redirect to dashboard!!
             hashHistory.push('/dashboard');
         }
-        console.log(this.props, nextProps);
+        console.log(prevProps, this.props);
     }
 
     onSubmit({ email, password }) {
