@@ -1,14 +1,29 @@
 import React, { Component } from 'react';
 import { graphql } from 'react-apollo';
 import AuthForm from './AuthForm';
+import { hashHistory } from 'react-router';
+
 import mutation from '../mutations/Login';
 import query from '../queries/CurrentUser';
+
 
 class LoginForm extends Component {
     constructor(props) {
         super(props);
 
         this.state = { errors: [] };
+    }
+
+    //WARNING! To be deprecated in React v17. Use componentDidUpdate instead.
+    componentWillUpdate(nextProps) {
+        // this.props // the old, current set of props
+        // nextProps // the next set of props that will be in place
+        // when the component rerenders
+        if (!this.props.data.user && nextProps.data.user) {
+            // redirect to dashboard!!
+            hashHistory.push('/dashboard');
+        }
+        console.log(this.props, nextProps);
     }
 
     onSubmit({ email, password }) {
@@ -33,4 +48,6 @@ class LoginForm extends Component {
     }
 }
 
-export default graphql(mutation)(LoginForm);
+export default graphql(query)(
+    graphql(mutation)(LoginForm)
+);
