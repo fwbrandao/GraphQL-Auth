@@ -14,7 +14,7 @@ class LoginForm extends Component {
         this.state = { errors: [] };
     }
 
-    //WARNING! To be deprecated in React v17. Use componentDidUpdate instead.
+    //WARNING! componentWillUpdate To be deprecated in React v17. Use componentDidUpdate instead.
     componentDidUpdate(prevProps) {
         // this.props // the old, current set of props
         // nextProps // the next set of props that will be in place
