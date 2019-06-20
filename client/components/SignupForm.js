@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import { graphql } from 'react-apollo';
+import { hashHistory } from 'react-router';
+
 import AuthForm from './AuthForm';
 import mutation from '../mutations/Signup';
 import query from '../queries/CurrentUser';
@@ -10,6 +12,18 @@ class SignupForm extends Component {
 
         this.state = { errors: [] };
     }
+
+    //WARNING! componentWillUpdate To be deprecated in React v17. Use componentDidUpdate instead.
+    componentDidUpdate(prevProps) {
+        // this.props // the old, current set of props
+        // nextProps // the next set of props that will be in place
+        // when the component rerenders
+        if (!prevProps.data.user && this.props.data.user) {
+            // redirect to dashboard!!
+            hashHistory.push('/dashboard');
+        }
+    }
+
 
     onSubmit({ email, password }) {
         this.props.mutate({
@@ -33,4 +47,6 @@ class SignupForm extends Component {
     }
 }
 
-export default graphql(mutation)(SignupForm);
+export default graphql(query)(
+    graphql(mutation)(SignupForm)
+);

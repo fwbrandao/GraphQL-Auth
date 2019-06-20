@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import { graphql } from 'react-apollo';
-import AuthForm from './AuthForm';
 import { hashHistory } from 'react-router';
 
+import AuthForm from './AuthForm';
 import mutation from '../mutations/Login';
 import query from '../queries/CurrentUser';
 
@@ -23,7 +23,6 @@ class LoginForm extends Component {
             // redirect to dashboard!!
             hashHistory.push('/dashboard');
         }
-        console.log(prevProps, this.props);
     }
 
     onSubmit({ email, password }) {
